@@ -33,7 +33,9 @@
 
         h6 { font-size: 1.5em; margin-top: 0; }
 
-        p, li, td, th { font-size: 1.5em; }
+        p, li, td, th { font-size: 1.5em;}
+
+        p {text-align: justify;}
 
         td p, td li, th li,
         li li, li p, li td, li th { font-size: 1em; }
@@ -423,7 +425,8 @@
             }
 
         .use-case {
-            display: flex; flex-wrap: wrap;
+            display: flex;
+            justify-content: center
         }
 
         .use-case-diagram {
@@ -437,7 +440,11 @@
         }
 
         .use-case-notes {
+            display: flex;
+            flex-direction: column;
             margin-left: 12px;
+            text-align: justify;
+            
         }
 
         .scenario {
@@ -582,9 +589,10 @@
             <div>
                 <h1 class="report-title">Rapport du livrable 1</h1>
                 <p class="report-summary">
-                    <em>Court résumé du rapport</em> &ndash; Ce livrable se concentre sur... 
-                    lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia distinctio tempora quam nulla quod enim. 
-                    Odit eius dolores repellendus incidunt doloribus delectus at ex sunt error, iste dicta, maiores blanditiis.
+                    Ce livrable se concentre sur l'analyse des exigences d'une proposition offerte par un client. Il représente donc
+                    un moyen de se familiariser avec les différents outils et procédés utilisés pour éclaircir les demandes et attentes
+                    d'un client. Cette analyse sert principalement à offrir un produit final de meilleure qualité et répondant le plus
+                    possible aux exigences exprimées.
                 </p>
             </div>
 
@@ -676,9 +684,14 @@
                 <h2 id="plan" class="section-title">Cadre du projet</h2>
                 <h3 class="subsection-title">Introduction</h3>
                 <p>
-                    <em>
-                        Description brève du projet.
-                    </em>
+                    Ce projet consiste à créer l'application <em>MaVille</em> qui a pour but de développer une collaboration étroite
+                    entre les citoyens de la ville de Montréal ainsi que ses nombreux intervenants responsables des travaux publiques.
+                    Cette application permettra aux citoyens de prendre part à une planification participative qui vise à donner une voix
+                    aux résidents en ce qui concerne les travaux. Celle-ci permettra aussi de consulter les travaux en cours et à venir, de
+                    soumettre des requêtes de travail, de signaler des problèmes et de recevoir des notifcations personnalisées! Ce projet sera
+                    aussi utilisé par les intervenants pour soumettre des projets de travail ainsi que pour mettre à jour les informations relatives
+                    aux chantiers. Ainsi, la collaboration entre ces deux partis permettra de diminuer les impacts des entraves sur le quotidien des citoyens
+                    et fera de Montréal une ville modèle.
                 </p>
                 <h3 class="subsection-title">Échéancier</h3>
                 <p>
@@ -751,14 +764,26 @@
              
                 <h3 class="subsection-title">Cas d'utilisation</h3>
                 <div class="use-case">
-                    <img class="use-case-diagram" src="images/use_case_diagram.svg" alt="Diagramme de cas d'utilisation">
-                    <p class="use-case-notes">
-                        <em>
-                            Notes à propos du diagramme <br>
-                            - choix des acteurs <br>
-                            - choix des relations
-                        </em>
-                    </p>
+                    <img class="use-case-diagram" src="images/DiagrammeCUs.svg" alt="Diagramme de cas d'utilisation">
+                    <div class="use-case-notes">
+                        <h4 class="subsection-title"> À propos des acteurs </h4>
+                        <p> 
+                            Le résident et l'intervenant sont représentés sans relation de généralisation, car chacun a un rôle
+                            différent que l'autre ne peut pas réaliser. Par exemple, un résident ne pourrait pas remplacer un
+                            intervenant, car celui-ci ne peut pas mettre à jour les informations liées à un chantier. Le résident
+                            et l'intervenant n'ont en fait <b>aucun</b> cas d'utilisation en commun; ce sont deux parties distinctes
+                            de l'application.
+                        </p>
+
+                        <h4 class="subsection-title"> À propos des relations </h4>
+                        <p> 
+                            Tous les cas d'utilisation du résident et de l'intervenant incluent l'inscription/l'authentification, car 
+                            celle-ci est nécessaire afin d'accéder au reste de l'application et, ultimement, aux actions possibles. De plus, 
+                            la recherche de travaux est une extension de la consultation de travaux, car, une fois sur la page des travaux, il
+                            sera possible, mais <b>pas obligatoire</b>, de rechercher un chantier en particulier. Toutes les autres relations
+                            sont les relations d'association du résident et de l'intervenant.
+                        </p>
+                    </div>
                 </div>
 
                 <h3 class="subsection-title">Scénarios</h3>
