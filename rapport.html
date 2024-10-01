@@ -843,9 +843,8 @@
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
                             <p class="cu-notes">
-                                Le résident doit fournir une adresse courriel, un mot de passe, un numéro de téléphone, un prénom,
-                                un nom et une adresse civique lors de l'inscription. Lors de la connexion, seulement l'adresse courriel
-                                et le mot de passe sont nécessaires.
+                                Pour l'inscription, le résident doit fournir son adresse courriel, son mot de passe, son numéro de téléphone (optionnel), son prénom,
+                                son nom, son adresse civique et sa date de naissance.
                             </p>
                         </div>
                     </div>
@@ -854,6 +853,8 @@
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident ouvre l'application <em>MaVille</em>.</li>
                             <li class="scenario-main-step">Le système affiche l'écran d'authentification.</li>
+                            <li class="scenario-main-step">Le résident sélectionne l'option pour se connecter.</li>
+                            <li class="scenario-main-step">Le système affiche l'écran de connexion.</li>
                             <li class="scenario-main-step">Le résident entre son adresse courriel et son mot de passe pour se connecter.</li>
                             <li class="scenario-main-step">Le résident appuie sur le bouton pour se connecter.</li>
                             <li class="scenario-main-step">Le système valide les informations entrées.</li>
@@ -864,19 +865,20 @@
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
                             <ol class="bare-list scenario-alt-steps">
                                 <li class="scenario-alt-step" value="3">
-                                    Le résident entre son adresse courriel, son mot de passe, son numéro de téléphone, son prénom,
-                                    son nom et son adresse civique pour s'inscrire.
+                                    Le résident sélectionne l'option pour s'inscrire.
                                     <ol class="bare-list">
+                                        <li value="3">Le système affiche l'écran d'inscription</li>
+                                        <li value="3">Le résident entre toutes les informations demandées.</li>
                                         <li value="3">Le résident appuie sur le bouton pour s'inscrire.</li>
                                         <li value="3">Le système enregistre les informations entrées.</li>
                                         <li value="3">Le résident est connecté à l'application.</li>
                                     </ol>
                                 </li>
-                                <li class="scenario-alt-step" value="5">
+                                <li class="scenario-alt-step" value="7">
                                     Le système ne valide pas les informations entrées.
                                     <ol class="bare-list">
-                                        <li value="5">Le système affiche un message d'erreur à l'utilisateur.</li>
-                                        <li value="5">Le scénario reprend à l'étape 3.</li>
+                                        <li value="7">Le système affiche un message d'erreur à l'utilisateur.</li>
+                                        <li value="7">Le scénario reprend à l'étape 4.</li>
                                     </ol>
                                 </li>
                             </ol>
@@ -887,11 +889,10 @@
                 <div class="scenario" id="cu-2">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
-                            <strong>CU:</strong> Consulter les travaux en cours
+                            <strong>CU:</strong> Consulter les travaux
                         </h4>
                         <p class="cu-goal">
-                            <strong>Objectif:</strong> Obtenir la liste des travaux en cours du plus récent au moins
-                            récent.
+                            <strong>Objectif:</strong> Obtenir la liste des travaux en cours ou à venir.
                         </p>
 
                         <hr>
@@ -913,13 +914,13 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Le résident obtient les informations des travaux consultés.</li>
+                                <li class="dash">Le résident voit la liste des travaux en cours ou à venir.</li>
                             </ul>
                         </div>
 
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
-                            <p class="cu-notes">Les travaux peuvent être filtrés par localisation ou type de travaux.
+                            <p class="cu-notes">Les travaux sont disponibles dans deux onglets, 'en cours' et 'à venir'.
                             </p>
                         </div>
                     </div>
@@ -927,9 +928,10 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option pour accéder au répertoire des travaux.</li>
-                            <li class="scenario-main-step">Le système ouvre le répertoire des travaux.</li>
+                            <li class="scenario-main-step">Le système ouvre le répertoire des travaux, dans l'onglet 'en cours'.</li>
                             <li class="scenario-main-step">Le système affiche la liste des travaux en cours par ancienneté croissante.</li>
-                            <li class="scenario-main-step">Le résident sélectionne le chantier désiré.</li>    
+                            <li class="scenario-main-step">Le résident demeure sur l'onglet actuel.</li>
+                            <li class="scenario-main-step">Le résident sélectionne un travail.</li>
                             <li class="scenario-main-step">Le système affiche les détails du travail sélectionné.</li>
 
                         </ol>
@@ -938,10 +940,10 @@
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
                             <ol class="bare-list scenario-alt-steps">
                                 <li class="scenario-alt-step" value="4">
-                                    Le résident a sélectionné le mauvais chantier.
+                                    Le résident sélectionne l'onglet 'à venir'.
                                     <ol class="bare-list">
-                                        <li value="4">Le résident retourne au répertoire des travaux.</li>
-                                        <li value="4">Le scénario reprend à l'étape 4.</li>
+                                        <li value="4">Le système affiche tous les travaux à venir dans les trois prochains mois.</li>
+                                        <li value="4">Le scénario reprend à l'étape 5.</li>
                                     </ol>
                                 </li>
                             </ol>    
@@ -984,16 +986,15 @@
 
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
-                            <p class="cu-notes">L'application permet d'affiner la recherche par localisation, type de
-                                travaux, et dates.</p>
+                            <p class="cu-notes">L'application permet d'affiner la recherche par titre, type de travaux ou par quartier.</p>
                         </div>
                     </div>
                     <div class="scenario-main">
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident est sur le répertoire des travaux.</li>
-                            <li class="scenario-main-step">Le résident entre des critères de recherche (localisation, type de travaux, dates).</li>
-                            <li class="scenario-main-step">L'application affiche les résultats de la recherche.</li>
+                            <li class="scenario-main-step">Le résident entre des critères de recherche (titre, type de travaux, quartier).</li>
+                            <li class="scenario-main-step">L'application affiche les travaux correspondants aux critères de recherche.</li>
                             <li class="scenario-main-step">Le résident clique sur un travail spécifique pour en voir les détails.</li>
                             <li class="scenario-main-step">Le système affiche les informations relatives au travail sélectionné.</li>
                         </ol>
@@ -1023,10 +1024,10 @@
                 <div class="scenario" id="cu-4">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
-                            <strong>CU:</strong> Soumettre une requête de travail
+                            <strong>CU:</strong> Soumission/suivi d'une une requête de travail
                         </h4>
                         <p class="cu-goal">
-                            <strong>Objectif:</strong> Le résident souhaite soumettre une requête de travail pour un chantier personnel.
+                            <strong>Objectif:</strong> Le résident souhaite soumettre une requête de travail pour un chantier ou faire le suivi d'une requête.
                         </p>
 
                         <hr>
@@ -1048,23 +1049,24 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">La requête est soumise à la ville de Montréal.</li>
+                                <li class="dash">La requête est soumise à la ville de Montréal et/ou le suivi a été fait.</li>
                             </ul>
                         </div>
 
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
                             <p class="cu-notes">
-                                Les informatiions à fournir sont la nature du travail, l'emplacement, la durée, la raison, etc.
+                                Les informations à fournir sont la nature du travail, une description détaillée, le type et la date de début.
                             </p>
                         </div>
                     </div>
                     <div class="scenario-main">
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
-                            <li class="scenario-main-step">Le résident sélectionne l'option pour soumettre une requête de travail.</li>
-                            <li class="scenario-main-step">Le résident remplit le formulaire en précisant la nature de
-                                la requéte ou du travail souhaité.</li>
+                            <li class="scenario-main-step">Le résident sélectionne l'option pour faire la soumission ou le suivi d'une requête de travail.</li>
+                            <li class="scenario-main-step">Le système affiche l'onglet 'soumission' dans lequel se trouve un formulaire à remplir.</li>
+                            <li class="scenario-main-step">Le résident demeure dans l'onglet actuel.</li>
+                            <li class="scenario-main-step">Le résident remplit le formulaire en détaillant sa requête.</li>
                             <li class="scenario-main-step">Le résident ajoute des pièces jointes si nécessaire.</li>
                             <li class="scenario-main-step">Le résident soumet la requête.</li>
                             <li class="scenario-main-step">Le système soumet la requête à la ville.</li>
@@ -1073,24 +1075,34 @@
                         <div class="scenario-alt">
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
                             <ol class="bare-list scenario-alt-steps">
-                                <li class="scenario-alt-step" value="4">
-                                    Le formulaire est incomplet.
+                                <li class="scenario-alt-step" value="3">
+                                    Le résident sélectionne l'onglet 'suivi de requêtes'.
                                     <ol class="bare-list">
-                                        <li value="4">Le système demande au résident de remplir tous les champs
-                                            obligatoires.</li>
-                                        <li value="4">Le résident complète les informations manquantes et soumet à
-                                            nouveau la requête.</li>
-                                        <li value="4">Le scénario reprend à l'étape 5.</li>        
+                                        <li value="3">Le système affiche toutes les requêtes actives.</li>
+                                        <li value="3">Le résident sélectionne une requête.</li>
+                                        <li value="3">Le système affiche l'état de la requête (candidature présente ou non)</li>
+                                        <li value="3">Le résident accepte ou refuse l'offre, si applicable</li>
+                                        <li value="3">Le scénario se termine.</li>        
                                     </ol>
                                 </li>
-                                <li class="scenario-alt-step" value="4">
+                                <li class="scenario-alt-step" value="6">
+                                    Le formulaire est incomplet.
+                                    <ol class="bare-list">
+                                        <li value="6">Le système demande au résident de remplir tous les champs
+                                            obligatoires.</li>
+                                        <li value="6">Le résident complète les informations manquantes et soumet à
+                                            nouveau la requête.</li>
+                                        <li value="6">Le scénario reprend à l'étape 5.</li>        
+                                    </ol>
+                                </li>
+                                <li class="scenario-alt-step" value="6">
                                     Pièces jointes trop volumineuses.
                                     <ol class="bare-list">
-                                        <li value="4">Le système informe le résident que les pièces jointes dépassent la
+                                        <li value="6">Le système informe le résident que les pièces jointes dépassent la
                                             taille maximale autorisée.</li>
-                                        <li value="4">Le résident remplace ou supprime les fichiers et soumet à nouveau
+                                        <li value="6">Le résident remplace ou supprime les fichiers et soumet à nouveau
                                             la requête.</li>
-                                        <li value="4">Le scénario reprend à l'étape 5.</li>     
+                                        <li value="6">Le scénario reprend à l'étape 5.</li>     
                                     </ol>
                                 </li>
                             </ol>
@@ -1133,7 +1145,7 @@
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
                             <p class="cu-notes">
-                                Le résident peut donner son opinion quant aux travaux qu'il désire et ne désire pas.
+                                Le résident peut fournir la plage horaire idéale pour des travaux et envoyer un commenaire par rapport à un travail terminé.
                             </p>
                         </div>
                     </div>
@@ -1141,32 +1153,28 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option pour participier à la planification.</li>
-                            <li class="scenario-main-step">Le système affiche les options de suggérer un travail et d'envoyer un commentaire.</li>
-                            <li class="scenario-main-step">Le résident sélectionne l'option d'envoyer une suggestion de travail.</li>
-                            <li class="scenario-main-step">Le système affiche le formulaire à remplir.</li>
-                            <li class="scenario-main-step">Le résident remplit le formulaire et l'envoie à la ville.</li>
-                            <li class="scenario-main-step">Le système indique à l'utilisateur que le formulaire a été envoyé.</li>
+                            <li class="scenario-main-step">Le système affiche le contenu de l'onglet 'préférences des résidents'.</li>
+                            <li class="scenario-main-step">Le résident demeure sur l'onglet actuel.</li>
+                            <li class="scenario-main-step">Le résident sélectionne l'option pour faire part de ses préférences.</li>
+                            <li class="scenario-main-step">Le résident envoie sa plage horaire idéale pour les travaux.</li>
+                            <li class="scenario-main-step">Le système met à jour l'onglet et sa préférence est ajoutée.</li>
                         </ol>
 
                         <div class="scenario-alt">
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
                             <ol class="bare-list scenario-alt-steps">
                                 <li class="scenario-alt-step" value="3">
-                                    Le résident sélectionne l'option d'envoyer un commentaire.
+                                    Le résident clique sur l'onglet 'commentaires'.
                                     <ol class="bare-list">
-                                        <li value="3">Le système affiche la boîte texte à remplir.</li>
-                                        <li value="3">Le résident rédige son message et l'envoie.</li>
-                                        <li value="3">Le système indique à l'utilisateur que le commentaire a été envoyé.</li>
+                                        <li value="3">Le système affiche une liste des travaux récemment terminés dans le quartier.</li>
+                                        <li value="3">Le résident sélectionne un travail.</li>
+                                        <li value="3">Le système affiche les commentaires publiés sur ce travail.</li>
+                                        <li value="3">Le résident sélectionne l'option pour envoyer un commentaire.</li>
+                                        <li value="3">Le résident rédige son commentaire et le publie.</li>
+                                        <li value="3">Le système met à jour les commentaires du travail.</li>
                                     </ol>
                                 </li>
-                                <li class="scenario-alt-step" value="5">
-                                    Le formulaire n'est pas complet.
-                                    <ol class="bare-list">
-                                        <li value="5">Le système indique à l'utilisateur que le formulaire manque certaines informations.</li>
-                                        <li value="5">Le formulaire n'est pas envoyé à la ville.</li>
-                                        <li value="5">Le scénario reprend à l'étape 4.</li>
-                                    </ol>
-                                </li>
+                                
                             </ol>
                         </div>
                     </div>
@@ -1206,8 +1214,8 @@
 
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
-                            <p class="cu-notes">Un signalement peut être relié à un chantier terminé, en cours ou à venir aisni qu'à
-                                tous autres situations jugées dignes d'une plainte.
+                            <p class="cu-notes">Un signalement doit contenir les informations suivantes: nom et prénom du résident, 
+                                son adresse courriel, son adresse de résidence, le type du problème et une description détaillée.
                             </p>
                         </div>
                     </div>
@@ -1407,7 +1415,7 @@
                             <h5 class="cu-part-title">Préconditions</h5>
                             <ul class="bare-list cu-conditions">
                                 <li class="dash">Si l'intervenant se connecte, il doit avoir un compte existant.</li>
-                                <li class="dash">Aucune précondition pour l'inscription.</li>
+                                <li class="dash">Si l'intervenant s'inscrit, il doit être enregistré auprès de la ville.</li>
                             </ul>
                         </div>
 
@@ -1421,9 +1429,8 @@
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
                             <p class="cu-notes">
-                                L'intervenant doit fournir son adresse courriel, son mot de passe, son numéro de téléphone, son prénom,
-                                son nom et son entreprise lors de l'inscription. Lors de la connexion, seulement l'adresse courriel
-                                et le mot de passe sont nécessaires.
+                                Pour l'inscription, l'intervenant doit fournir son nom et prénom, son adresse courriel, son mot de passe, le type de son entreprise
+                                ainsi que son identifiant (code à 8 chiffres) de la ville.
                             </p>
                         </div>
                     </div>
@@ -1432,6 +1439,8 @@
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">L'intervenant ouvre l'application <em>MaVille</em>.</li>
                             <li class="scenario-main-step">Le système affiche l'écran d'authentification.</li>
+                            <li class="scenario-main-step">L'intervenant sélectionne l'option pour se connecter.</li>
+                            <li class="scenario-main-step">Le système affiche l'écran de connexion.</li>
                             <li class="scenario-main-step">L'intervenant entre son adresse courriel et son mot de passe pour se connecter.</li>
                             <li class="scenario-main-step">L'intervenant appuie sur le bouton pour se connecter.</li>
                             <li class="scenario-main-step">Le système valide les informations entrées.</li>
@@ -1442,19 +1451,20 @@
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
                             <ol class="bare-list scenario-alt-steps">
                                 <li class="scenario-alt-step" value="3">
-                                    L'intervenant entre son adresse courriel, son mot de passe, son numéro de téléphone, son prénom,
-                                    son nom et son entreprise pour s'inscrire.
+                                    L'intervenant sélectionne l'option pour s'inscrire.
                                     <ol class="bare-list">
-                                        <li value="3">L'intervenant appuie sur le bouton pour s'inscrire.</li>
+                                        <li value="3">Le système affiche l'écran d'inscription.</li>
+                                        <li value="3">L'intervenant entre toutes les informations demandées.</li>
+                                        <li value="3">L'intervenant clique sur le bouton pour s'inscire.</li>
                                         <li value="3">Le système enregistre les informations entrées.</li>
                                         <li value="3">L'intervenant est connecté à l'application.</li>
                                     </ol>
                                 </li>
-                                <li class="scenario-alt-step" value="5">
+                                <li class="scenario-alt-step" value="7">
                                     Le système ne valide pas les informations entrées.
                                     <ol class="bare-list">
-                                        <li value="5">Le système affiche un message d'erreur à l'utilisateur.</li>
-                                        <li value="5">Le scénario reprend à l'étape 3.</li>
+                                        <li value="7">Le système affiche un message d'erreur à l'utilisateur.</li>
+                                        <li value="7">Le scénario reprend à l'étape 4.</li>
                                     </ol>
                                 </li>
                             </ol>
@@ -1499,8 +1509,7 @@
 
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
-                            <p class="cu-notes">Les modifications peuvent inclure l'état du chantier, la date
-                                d'achèvement prévue ou d'autres informations pertinentes.</p>
+                            <p class="cu-notes">Les modifications peuvent être la description du projet, la date de fin prévue ou l'état du chantier.</p>
                         </div>
                     </div>
                     <div class="scenario-main">
@@ -1509,21 +1518,20 @@
                             <li class="scenario-main-step">L'intervenant sélectionne l'option pour mettre à jour un chantier.</li>
                             <li class="scenario-main-step">Le système affiche les travaux en cours.</li>
                             <li class="scenario-main-step">L'intervenant sélectionne le chantier qu'il souhaite mettre à jour.</li>
-                            <li class="scenario-main-step">L'intervenant modifie les informations pertinentes (état du
-                                chantier, date de fin, etc.).</li>
+                            <li class="scenario-main-step">L'intervenant modifie les informations pertinentes.</li>
                             <li class="scenario-main-step">L'intervenant enregistre les modifications.</li>
-                            <li class="scenario-main-step">Le système met à jour les informations du chantier et envoie
-                                une notification aux résidents concernés.</li>
+                            <li class="scenario-main-step">Le système met à jour les informations du travail.</li>
+                            <li class="scenario-main-step">Le système envoie une notification aux résidents concernés.</li>
                         </ol>
 
                         <div class="scenario-alt">
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
                             <ol class="bare-list scenario-alt-steps">
                                 <li class="scenario-alt-step" value="5">
-                                    L'intervenant n'a pas les droits pour modifier les informations.
+                                    L'intervenant n'enregistre pas les modifications.
                                     <ol class="bare-list">
-                                        <li value="5">Le système informe l'intervenant qu'il n'a pas les autorisations
-                                            nécessaires pour effectuer la modification.</li>
+                                        <li value="5">Le système ne met pas à jour les informations du travail.</li>
+                                        <li value="5">Le système n'emvoie aucune notification.</li>
                                         <li value="5">Le scénario se termine.</li>
                                     </ol>
                                 </li>
@@ -1567,7 +1575,8 @@
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
                             <p class="cu-notes">
-                                Les informatiions à fournir sont la nature du travail, l'emplacement, la durée, l'entité en charge, etc.
+                                Les informations à fournir sont le titre du projet, la description, le type du travail, le(s) quartier(s) affecté(s),
+                                les rues affectées, l'horaire des travaux ainsi que la date du début et de fin.
                             </p>
                         </div>
                     </div>
@@ -1575,9 +1584,17 @@
                         <h5 class="scenario-main-title">Scénario principal</h5>
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">L'intervenant sélectionne l'option pour soumettre un nouveau travail.</li>
-                            <li class="scenario-main-step">L'intervenant remplit le formulaire affiché par le système.</li>
+                            <li class="scenario-main-step">Le système affiche le formulaire à remplir.</li>
+                            <li class="scenario-main-step">L'intervenant entre le titre du projet, la description, le type du travail, les quartiers affectés,
+                                les rues affectées et l'horaire des travaux.</li>
+                            <li class="scenario-main-step">L'intervenant clique sur le bouton pour consulter les préférences des résidents de(s)
+                                quartier(s) affecté(s).</li>
+                            <li class="scenario-main-step">Le système affiche les préférences des résidents quant à la plage horaire idéale.</li>
+                            <li class="scenario-main-step">L'intervenant ferme la page et retourne au formulaire.</li>
+                            <li class="scenario-main-step">L'intervenant termine le formulaire en entrant la date de début et de fin.</li>
                             <li class="scenario-main-step">L'intervenant ajoute des pièces jointes si nécessaire.</li>
                             <li class="scenario-main-step">L'intervenant envoie le formulaire.</li>
+                            <li class="scenario-main-step">Le système informe l'intervenant des conflits avec les préférences des résidents concernés.</li>
                             <li class="scenario-main-step">Le système soumet la formulaire à la ville.</li>
                         </ol>
 
@@ -1585,25 +1602,99 @@
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
                             <ol class="bare-list scenario-alt-steps">
                                 <li class="scenario-alt-step" value="4">
+                                    L'intervenant ne clique pas sur le bouton.
+                                    <ol class="bare-list">
+                                        <li value="4">Le scénario reprend à l'étape 7.</li>        
+                                    </ol>
+                                </li>
+                                <li class="scenario-alt-step" value="9">
                                     Le formulaire est incomplet.
                                     <ol class="bare-list">
-                                        <li value="4">Le système demande au résident de remplir tous les champs
+                                        <li value="9">Le système demande au résident de remplir tous les champs
                                             obligatoires.</li>
-                                        <li value="4">L'intervenant complète les informations manquantes et envoie à
+                                        <li value="9">L'intervenant complète les informations manquantes et envoie à
                                             nouveau le formulaire.</li>
-                                        <li value="4">Le scénario reprend à l'étape 5.</li>        
+                                        <li value="9">Le scénario reprend à l'étape 9.</li>        
                                     </ol>
                                 </li>
-                                <li class="scenario-alt-step" value="4">
+                                <li class="scenario-alt-step" value="9">
                                     Pièces jointes trop volumineuses.
                                     <ol class="bare-list">
-                                        <li value="4">Le système informe le résident que les pièces jointes dépassent la
+                                        <li value="9">Le système informe le résident que les pièces jointes dépassent la
                                             taille maximale autorisée.</li>
-                                        <li value="4">Le résident remplace ou supprime les fichiers et envoie à nouveau
+                                        <li value="9">Le résident remplace ou supprime les fichiers et envoie à nouveau
                                             le formulaire.</li>
-                                        <li value="4">Le scénario reprend à l'étape 5.</li>     
+                                        <li value="9">Le scénario reprend à l'étape 9.</li>     
                                     </ol>
                                 </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scenario" id="cu-12">
+                    <div class="scenario-meta">
+                        <h4 class="cu-name">
+                            <strong>CU:</strong> Consulter la liste des requêtes de travail
+                        </h4>
+                        <p class="cu-goal">
+                            <strong>Objectif:</strong> Un intervenant souhaite accéder aux requêtes de travail en cours.
+                        </p>
+
+                        <hr>
+
+                        <div class="cu-part">
+                            <h5 class="cu-part-title">Acteurs</h5>
+                            <ul class="bare-list cu-actors">
+                                <li class="cu-actor">Intervenant (Principal)</li>
+                            </ul>
+                        </div>
+
+                        <div class="cu-part">
+                            <h5 class="cu-part-title">Préconditions</h5>
+                            <ul class="bare-list cu-conditions">
+                                <li class="dash">L'intervenant doit être connecté à l'application <em>MaVille</em>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="cu-part">
+                            <h5 class="cu-part-title">Postconditions</h5>
+                            <ul class="bare-list cu-conditions">
+                                <li class="dash">L'intervenant a consulté les requêtes de travail.</li>
+                            </ul>
+                        </div>
+
+                        <div class="cu-part cu-part--notes">
+                            <h5 class="cu-part-title">Notes</h5>
+                            <p class="cu-notes">
+                                L'intervenant peut poser sa candidature pour chacune des requêtes présentes (si une requête a une candidature active, elle
+                                n'est plus affichée).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="scenario-main">
+                        <h5 class="scenario-main-title">Scénario principal</h5>
+                        <ol class="scenario-main-steps">
+                            <li class="scenario-main-step">L'intervenant sélectionne l'option consulter les requêtes de travail.</li>
+                            <li class="scenario-main-step">Le système affiche la liste des requêtes en cours.</li>
+                            <li class="scenario-main-step">L'intervenant entre des critères de recherche.</li>
+                            <li class="scenario-main-step">Le système affiche toutes les requêtes correspondantes aux critères.</li>
+                            <li class="scenario-main-step">L'intervenant sélectionne une requête spécifique.</li>
+                            <li class="scenario-main-step">L'intervenant pose sa candidature pour la requête sélectionnée.</li>
+                            <li class="scenario-main-step">Le système informe l'intervenant que la candidature a été envoyée.</li>
+                            <li class="scenario-main-step">Le système met à jour les requêtes de travail en cours.</li>
+                        </ol>
+
+                        <div class="scenario-alt">
+                            <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
+                            <ol class="bare-list scenario-alt-steps">
+                                <li class="scenario-alt-step" value="3">
+                                    Le formulaire ne se sert pas des filtres.
+                                    <ol class="bare-list">
+                                        <li value="3">Le scénario reprend à l'étape 5.</li>        
+                                    </ol>
+                                </li>
+                                
                             </ol>
                         </div>
                     </div>
