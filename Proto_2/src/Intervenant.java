@@ -18,6 +18,8 @@ public class Intervenant {
         return password;
     }
 
+    public String getNom() { return nom; }
+
     public void setPassword(String password) {
         this.password = password;
     }

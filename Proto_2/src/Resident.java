@@ -11,16 +11,14 @@ public class Resident {
     private String adresse;
     private LocalDate birthdate;
 
-    public Resident(String prenom,String nom, String email,String age,String password,String adresse, String numero) {
+    public Resident(String prenom,String nom, String email,LocalDate age,String password,String adresse, String numero) {
         this.prenom = prenom;
         this.nom = nom;
         this.email = email;
         this.password = password;
         this.adresse = adresse;
         this.number = numero;
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        this.birthdate = LocalDate.parse(age,formatter);
+        this.birthdate = age;
     }
 
     public String getPassword() {
