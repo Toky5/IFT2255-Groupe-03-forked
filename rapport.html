@@ -622,7 +622,7 @@
                     <img class="member-pic" src="" alt="" >
                     <div class="member-identification">
                         <span class="member-name">Toky Erick RABENANTOANDRO</span>
-                        <span class="member-id">TODO</span>
+                        <span class="member-id">20266409</span>
                     </div> 
                     <span>Discord: @croustibat77</span>
                     <a href="mailto:prenom.nom@umontreal.ca">toky.erick.rabenantoandro@umontreal.ca</a>
@@ -632,7 +632,7 @@
                     <img class="member-pic" src="" alt="" >
                     <div class="member-identification">
                         <span class="member-name">Moussa Adama SOGOBA</span>
-                        <span class="member-id">TODO</span>
+                        <span class="member-id">20201487</span>
                     </div> 
                     <span>Discord: @moussas</span>
                     <a href="mailto:prenom.nom@umontreal.ca">moussa.adama.sogoba@umontreal.ca</a>
@@ -931,7 +931,12 @@
                             <li class="scenario-main-step">Le système ouvre le répertoire des travaux, dans l'onglet 'en cours'.</li>
                             <li class="scenario-main-step">Le système affiche la liste des travaux en cours par ancienneté croissante.</li>
                             <li class="scenario-main-step">Le résident demeure sur l'onglet actuel.</li>
+                            <li class="scenario-main-step">Le résident entre des critères de recherche.</li>
+                            <li class="scenario-main-step">Le système affiche la liste des travaux correspondants à la recherche.</li>
                             <li class="scenario-main-step">Le résident sélectionne un travail.</li>
+                            <li class="scenario-main-step">Le résident clique sur le bouton en cloche pour activer les notifications.</li>
+                            <li class="scenario-main-step">Le système indique que les notifcations pour le travail sont activées.</li>
+                            <li class="scenario-main-step">Le résident clique sur le travail sélectionné.</li>
                             <li class="scenario-main-step">Le système affiche les détails du travail sélectionné.</li>
 
                         </ol>
@@ -946,11 +951,24 @@
                                         <li value="4">Le scénario reprend à l'étape 5.</li>
                                     </ol>
                                 </li>
+                                <li class="scenario-alt-step" value="5">
+                                    Le résident ne fait pas de recherche.
+                                    <ol class="bare-list">                                        
+                                        <li value="5">Le scénario reprend à l'étape 7.</li>
+                                    </ol>
+                                </li>
+                                <li class="scenario-alt-step" value="8">
+                                    Le résident ne souhaite pas recevoir de notifcations.
+                                    <ol class="bare-list">                                        
+                                        <li value="8">Le scénario reprend à l'étape 10.</li>
+                                    </ol>
+                                </li>
                             </ol>    
                         </div>
                     </div>
                 </div>
-
+                
+                <!--
                 <div class="scenario" id="cu-3">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
@@ -1020,8 +1038,9 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="scenario" id="cu-4">
+                -->
+
+                <div class="scenario" id="cu-3">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> Soumission/suivi d'une une requête de travail
@@ -1110,7 +1129,7 @@
                     </div>
                 </div>
                 
-                <div class="scenario" id="cu-5">
+                <div class="scenario" id="cu-4">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> Prendre part à la planification participative
@@ -1180,7 +1199,7 @@
                     </div>
                 </div>
 
-                <div class="scenario" id="cu-6">
+                <div class="scenario" id="cu-5">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> Signaler un problème
@@ -1258,7 +1277,8 @@
                     </div>
                 </div>
 
-                <div class="scenario" id="cu-7">
+                <!--
+                <div class="scenario" id="cu-6">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> Sélectionner les notifcations désirées
@@ -1323,8 +1343,9 @@
                         </div>
                     </div>
                 </div>
+                -->
 
-                <div class="scenario" id="cu-8">
+                <div class="scenario" id="cu-6">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> Accéder aux notifcations
@@ -1367,8 +1388,10 @@
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le résident sélectionne l'option pour accéder aux notifications.</li>
                             <li class="scenario-main-step">Le système affiche l'ensemble des notifications reçues.</li>
-                            <li class="scenario-main-step">Le résident clique sur une notification pour accéder aux informatiions du chantier concerné.</li>
-                            <li class="scenario-main-step">Le résident est redirigé vers le <a href="#cu-2">répertoire des travaux</a>.</li>
+                            <li class="scenario-main-step">Le résident clique sur une notification pour accéder aux informations du chantier concerné.</li>
+                            <li class="scenario-main-step">Le système affiche les changements apportés au travail concerné.</li>
+                            <li class="scenario-main-step">Le résident clique sur le bouton pour voir plus d'informations.</li>
+                            <li class="scenario-main-step">Le système affiche l'ensemble des informations du travail.</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1381,11 +1404,17 @@
                                         <li value="2">Le scénario se termine.</li>     
                                     </ol>
                                 </li>
-                                <li class="scenario-alt-step" value="4">
-                                    Le résident n'est pas redirigé vers le répertoire des travaux.
+                                <li class="scenario-alt-step" value="5">
+                                    Le résident ne clique pas sur le bouton.
                                     <ol class="bare-list">
-                                        <li value="4">Le système indique que le travail a été supprimé du répertoire de travaux.</li>
-                                        <li value="4">Le scénario se termine.</li>     
+                                        <li value="5">Le scénario se termine.</li>     
+                                    </ol>
+                                </li>
+                                <li class="scenario-alt-step" value="6">
+                                    Le système n'affiche pas les informations.
+                                    <ol class="bare-list">
+                                        <li value="6">Le système indique que le travail a été supprimé du répertoire de travaux.</li>
+                                        <li value="6">Le scénario se termine.</li>     
                                     </ol>
                                 </li>
                             </ol>
@@ -1393,7 +1422,7 @@
                     </div>
                 </div>
 
-                <div class="scenario" id="cu-9">
+                <div class="scenario" id="cu-7">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> S'inscrire ou se connecter comme intervenant
@@ -1472,7 +1501,7 @@
                     </div>
                 </div>
 
-                <div class="scenario" id="cu-10">
+                <div class="scenario" id="cu-8">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> Mettre à jour les informations d'un chantier
@@ -1540,7 +1569,7 @@
                     </div>
                 </div>
 
-                <div class="scenario" id="cu-11">
+                <div class="scenario" id="cu-9">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> Soumettre un nouveau travail
@@ -1632,7 +1661,7 @@
                     </div>
                 </div>
 
-                <div class="scenario" id="cu-12">
+                <div class="scenario" id="cu-10">
                     <div class="scenario-meta">
                         <h4 class="cu-name">
                             <strong>CU:</strong> Consulter la liste des requêtes de travail
@@ -1703,12 +1732,28 @@
                   
                 <h3 class="subsection-title">Diagramme d'activités</h3>
                 <div class="activity">
-                    <h4>Titre du diagramme 1</h4>
-                    <img class="activity-diagram" src="images/diagrammeCU1.svg" alt="Diagramme d'activités">
+                    <h4>S'inscrire ou se connecter comme résident</h4>
+                    <img class="activity-diagram" src="images/diagrammeCU1.svg" alt="Diagramme d'activités 1">
                 </div>
                 <div class="activity">
-                    <h4>Titre du diagramme 1</h4>
-                    <img class="activity-diagram" src="images/" alt="Diagramme d'activités">
+                    <h4>Consulter les travaux</h4>
+                    <img class="activity-diagram" src="images/diagrammeCU2.svg" alt="Diagramme d'activités 2">
+                </div>
+                <div class="activity">
+                    <h4>Requêtes de travail</h4>
+                    <img class="activity-diagram" src="images/diagrammeCU3.svg" alt="Diagramme d'activités 3">
+                </div>
+                <div class="activity">
+                    <h4>Planification participative</h4>
+                    <img class="activity-diagram" src="images/diagrammeCU4.svg" alt="Diagramme d'activités 4">
+                </div>
+                <div class="activity">
+                    <h4>Signaler un problème</h4>
+                    <img class="activity-diagram" src="images/diagrammeCU5.svg" alt="Diagramme d'activités 5">
+                </div>
+                <div class="activity">
+                    <h4>Accéder aux notifications</h4>
+                    <img class="activity-diagram" src="images/diagrammeCU6.svg" alt="Diagramme d'activités 6">
                 </div>
             </section>
 
