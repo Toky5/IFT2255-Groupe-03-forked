@@ -4,33 +4,55 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
+    static Utilisateur resident = new Resident();
+    static Utilisateur intervenant = new Intervenant();
+    public static String separator = "################################################################################";
+
     public static void main(String[] args) throws IOException, InterruptedException {
         boolean exit = false;
         Scanner scanner = new Scanner(System.in);
 
-        while (!exit) {
+         while (!exit) {
             afficherMenu();  // Afficher le menu
             String choix = scanner.nextLine();
 
             switch (choix) {
                 case "1":
-                    System.out.println("Connexion utilisateur sélectionnée.");
-                    User.loginUtilisateur();
-                    TimeUnit.SECONDS.sleep(2);
+                    System.out.println(separator);
+                    System.out.println("Connexion résident sélectionnée.");
+                    resident.connection(scanner);
+                    TimeUnit.SECONDS.sleep(1);
                     break;
+
                 case "2":
-                    System.out.println("Création de compte sélectionnée.");
-                    User.creerCompte();
-                    TimeUnit.SECONDS.sleep(2);
+                    System.out.println(separator);
+                    System.out.println("Connexion intervenant sélectionnée.");
+                    intervenant.connection(scanner);
+                    TimeUnit.SECONDS.sleep(1);
                     break;
-                case "4":  // Option pour quitter et retourner au menu principal
-                    System.out.println("Retour au menu principal...");
+
+                case "3":
+                    System.out.println(separator);
+                    System.out.println("Création de compte résident sélectionnée.");
+                    resident.inscription(scanner);
+                    TimeUnit.SECONDS.sleep(1);
                     break;
+
+                case "4":
+                    System.out.println(separator);
+                    System.out.println("Création de compte intervenant sélectionnée.");
+                    intervenant.inscription(scanner);
+                    TimeUnit.SECONDS.sleep(1);
+                    break;
+
                 case "EXIT":
+                    System.out.println(separator);
                     System.out.println("Fermeture de l'application.");
                     exit = true;
                     break;
+
                 default:
+                    System.out.println(separator);
                     System.out.println("Option non valide, veuillez réessayer.");
                     break;
             }
@@ -39,10 +61,19 @@ public class Main {
 
     // Afficher un simple menu de login
     public static void afficherMenu() {
-        System.out.println("Bienvenue sur MaVille");
-        System.out.println("1 - Connexion utilisateur");
-        System.out.println("2 - Créer un compte");
+        System.out.println("     M     M    AAAAA    V     V    IIIII   L         L         EEEEE ");
+        System.out.println("     MM   MM   A     A   V     V      I     L         L         E     ");
+        System.out.println("     M M M M   AAAAAAA    V   V       I     L         L         EEEEE ");
+        System.out.println("     M  M  M   A     A     V V        I     L         L         E     ");
+        System.out.println("     M     M   A     A      V       IIIII   LLLLLL    LLLLLL    EEEEE ");
+        System.out.println("\n---------------------- Bienvenue sur Maville! -----------------------");
+        System.out.println("\n1 - Connexion résident");
+        System.out.println("2 - Connexion intervenant");
+        System.out.println("3 - Créer un compte résident");
+        System.out.println("4 - Créer un compte intervenant");
         System.out.println("EXIT - Quitter l'application");
-        System.out.print("Veuillez sélectionner une option : ");
+        System.out.print("\nVeuillez sélectionner une option:" +
+                "\n(ex: tapez 1 pour vous connecter en tant que résident)" +
+                "\n");
     }
 }
