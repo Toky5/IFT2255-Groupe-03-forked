@@ -21,28 +21,28 @@ public class Main {
                     System.out.println(separator);
                     System.out.println("Connexion résident sélectionnée.");
                     resident.connection(scanner);
-                    TimeUnit.SECONDS.sleep(1);
+                    
                     break;
 
                 case "2":
                     System.out.println(separator);
                     System.out.println("Connexion intervenant sélectionnée.");
                     intervenant.connection(scanner);
-                    TimeUnit.SECONDS.sleep(1);
+                    
                     break;
 
                 case "3":
                     System.out.println(separator);
                     System.out.println("Création de compte résident sélectionnée.");
                     resident.inscription(scanner);
-                    TimeUnit.SECONDS.sleep(1);
+                    
                     break;
 
                 case "4":
                     System.out.println(separator);
                     System.out.println("Création de compte intervenant sélectionnée.");
                     intervenant.inscription(scanner);
-                    TimeUnit.SECONDS.sleep(1);
+                    
                     break;
 
                 case "EXIT":
