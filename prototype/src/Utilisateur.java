@@ -10,4 +10,3 @@ public interface Utilisateur {
     void soummettre() throws InterruptedException;
 
 }
-

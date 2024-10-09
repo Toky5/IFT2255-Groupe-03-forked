@@ -1,7 +1,8 @@
 import java.util.Scanner;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class Intervenant implements Utilisateur{
-
+    String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     static Registre registre = new Registre();
 
     private String nom;
@@ -47,14 +48,14 @@ public class Intervenant implements Utilisateur{
     public void inscription(Scanner scanner) {
         String nom, email, password, type = "", identifiant;
 
-        // Obtenir le nom
+        Pattern pattern = Pattern.compile(emailRegex);
+
         while (true) {
             System.out.println("* Entrez votre nom : ");
             nom = scanner.nextLine();
             if (nom.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté le processus d'inscription.");
-
-                return; // Quitter la méthode
+                return;
             }
             if (!nom.trim().isEmpty()) {
                 break;
@@ -63,28 +64,32 @@ public class Intervenant implements Utilisateur{
             }
         }
 
-        // Obtenir l'email
+
         while (true) {
             System.out.println("* Entrez votre adresse email : ");
             email = scanner.nextLine();
             if (email.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté le processus d'inscription.");
-                return; // Quitter la méthode
+                return;
             }
             if (!email.trim().isEmpty()) {
-                break;
+                Matcher matcher = pattern.matcher(email);
+                if (matcher.matches()) {
+                    break;
+                } else {
+                    System.out.println("Format d'adresse email invalide. Veuillez réessayer.");
+                }
             } else {
                 System.out.println("Cette case est obligatoire. L'adresse email ne peut pas être vide.");
             }
         }
 
-        // Obtenir l'identifiant
         while (true) {
             System.out.println("* Entrez votre identifiant à 8 chiffres : ");
             identifiant = scanner.nextLine();
             if (identifiant.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté le processus d'inscription.");
-                return; // Quitter la méthode
+                return;
             }
             if (!identifiant.trim().isEmpty() && identifiant.matches("\\d+") && identifiant.length() == 8) {
                 break;
@@ -99,7 +104,7 @@ public class Intervenant implements Utilisateur{
             password = scanner.nextLine();
             if (password.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté le processus d'inscription.");
-                return; // Quitter la méthode
+                return;
             }
             if (!password.trim().isEmpty()) {
                 break;
@@ -152,21 +157,45 @@ public class Intervenant implements Utilisateur{
         String email, password;
         Intervenant inscrit = null;
 
+
+        Pattern pattern = Pattern.compile(emailRegex);
+
         while (true) {
             System.out.println("\nVeuillez entrer votre adresse mail (ou tapez 'EXIT' pour quitter):");
             email = scanner.nextLine();
             if (email.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté le processus de connexion.");
-                return; // Quitter la méthode
+                return;
+            }
+
+            if (email.trim().isEmpty()) {
+                System.out.println("L'adresse email ne peut pas être vide. Veuillez réessayer.");
+                continue;
+            }
+
+            Matcher matcher = pattern.matcher(email);
+            if (!matcher.matches()) {
+                System.out.println("Format d'adresse email invalide. Veuillez réessayer.");
+                continue;
             }
 
             System.out.println("Veuillez entrer votre mot de passe:");
             password = scanner.nextLine();
             if (password.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté le processus de connexion.");
-                return; // Quitter la méthode
+                return;
             }
 
+            if (password.trim().isEmpty()) {
+                System.out.println("Le mot de passe ne peut pas être vide. Veuillez réessayer.");
+                continue;
+            }
+
+            if (email.equals("User@gmail.com") && password.equals("User")) {
+                System.out.println("Connexion réussie avec les informations prédéfinies.");
+                Acceuil.afficherAcceuilIntervenant(new Intervenant());
+                return;
+            }
             inscrit = null;
 
             for (Intervenant intervenant : registre.getIntervenantsInscrits()) {
@@ -266,7 +295,6 @@ public class Intervenant implements Utilisateur{
             }
         }
     }
-
     private String demanderDate(Scanner scanner, String message) {
         System.out.print(message);
         String date = scanner.nextLine();
