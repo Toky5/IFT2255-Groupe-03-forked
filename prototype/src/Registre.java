@@ -27,6 +27,4 @@ public class Registre {
     public void inscriptionIntervenant(Intervenant intervenant){
         intervenantsInscrits.add(intervenant);
     }
-
-
 }

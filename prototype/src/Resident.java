@@ -1,11 +1,9 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Resident implements Utilisateur {
-    String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+
     static Registre registre = new Registre();
 
     private String prenom;
@@ -77,8 +75,6 @@ public class Resident implements Utilisateur {
 
     @Override
     public void inscription(Scanner scanner) {
-        Pattern pattern = Pattern.compile(emailRegex);
-
         String nom, prenom, email, password, adresse, age, numero;
 
         while (true) {
@@ -117,12 +113,9 @@ public class Resident implements Utilisateur {
                 return; // Retourne au menu principal
             }
             if (!email.trim().isEmpty()) {
-                Matcher matcher = pattern.matcher(email);
-                if (matcher.matches()) {
-                    break;
-                } else {
-                    System.out.println("Format d'adresse email invalide. Veuillez réessayer.");
-                }
+                break;
+            } else {
+                System.out.println("Cette case est obligatoire. L'adresse Email ne peut pas être vide.");
             }
         }
 
@@ -203,9 +196,6 @@ public class Resident implements Utilisateur {
         String email, password;
         Resident inscrit = null;
 
-
-        Pattern pattern = Pattern.compile(emailRegex);
-
         while (true) {
             System.out.println("\nVeuillez entrer votre adresse mail (ou tapez 'EXIT' pour quitter):");
             email = scanner.nextLine();
@@ -217,12 +207,6 @@ public class Resident implements Utilisateur {
 
             if (email.trim().isEmpty()) {
                 System.out.println("L'adresse email ne peut pas être vide. Veuillez réessayer.");
-                continue;
-            }
-
-            Matcher matcher = pattern.matcher(email);
-            if (!matcher.matches()) {
-                System.out.println("Format d'adresse email invalide. Veuillez réessayer.");
                 continue;
             }
 
@@ -239,20 +223,13 @@ public class Resident implements Utilisateur {
                 continue;
             }
 
-            if (email.equals("User@gmail.com") && password.equals("User")) {
-                System.out.println("Connexion réussie avec les informations prédéfinies.");
-
-                Acceuil.afficherAcceuilResidents((Resident) Acceuil.resident);
-                return;
-            }
-
             inscrit = null;
 
             for (Resident resident : registre.getResidentsInscrits()) {
                 if (resident.getPassword().equals(password) && resident.getEmail().equals(email)) {
                     System.out.println("Résident trouvé");
                     inscrit = resident;
-                    Acceuil.afficherAcceuilResidents((Resident) Acceuil.resident);
+                    Acceuil.AfficherAcceuilResidents(resident);
                     return;
                 }
             }
@@ -261,33 +238,36 @@ public class Resident implements Utilisateur {
         }
     }
 
+
     @Override
     public void soummettre() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
+        Boolean exit = false;
         String titre, description, type, dateDebut;
         String[] typesTravaux = {"Réparation de voirie", "Entretien des espaces verts", "Rénovation d'infrastructure", "Construction", "Autre"};
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-        while (true) {
-            System.out.println("Veuillez soumettre une requête de travail. Tapez 'EXIT' à tout moment pour quitter.");
+        while (!exit) {
+            System.out.println("Veuillez soumettre une requête de travail. Tapez 'EXIT' pour quitter.");
 
-            // Saisie du titre
             System.out.println("Entrez le titre du travail à réaliser : ");
             titre = scanner.nextLine();
             if (titre.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté la soumission de requête.");
-                break;  // On quitte la boucle si l'utilisateur tape 'EXIT'
+                Acceuil.AfficherAcceuilResidents((Resident) Main.resident);
+                exit = true;
+                continue;
             }
 
-            // Saisie de la description
             System.out.println("Entrez la description détaillée du travail : ");
             description = scanner.nextLine();
             if (description.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté la soumission de requête.");
-                break;
+                Acceuil.AfficherAcceuilResidents((Resident) Main.resident);
+                exit = true;
+                continue;
             }
 
-            // Sélection du type de travail
             System.out.println("Sélectionnez le type de travail à partir de la liste suivante : ");
             for (int i = 0; i < typesTravaux.length; i++) {
                 System.out.println((i + 1) + ". " + typesTravaux[i]);
@@ -296,32 +276,24 @@ public class Resident implements Utilisateur {
             int choixType;
             while (true) {
                 System.out.print("Votre choix (1-" + typesTravaux.length + ") : ");
-                String choixTypeStr = scanner.nextLine();
-                if (choixTypeStr.equalsIgnoreCase("EXIT")) {
-                    System.out.println("Vous avez quitté la soumission de requête.");
-                    return;  // On quitte la méthode si l'utilisateur tape 'EXIT'
-                }
-
-                try {
-                    choixType = Integer.parseInt(choixTypeStr);
-                    if (choixType >= 1 && choixType <= typesTravaux.length) {
-                        type = typesTravaux[choixType - 1];
-                        break;
-                    } else {
-                        System.out.println("Veuillez choisir un numéro valide.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Veuillez entrer un numéro valide.");
+                choixType = scanner.nextInt();
+                scanner.nextLine(); // pour consommer le saut de ligne après l'entrée de l'utilisateur
+                if (choixType >= 1 && choixType <= typesTravaux.length) {
+                    type = typesTravaux[choixType - 1];
+                    break;
+                } else {
+                    System.out.println("Veuillez choisir un numéro valide.");
                 }
             }
 
-            // Saisie de la date
             while (true) {
                 System.out.println("Entrez la date de début espérée (Format yyyy/MM/dd) : ");
                 dateDebut = scanner.nextLine();
                 if (dateDebut.equalsIgnoreCase("EXIT")) {
                     System.out.println("Vous avez quitté la soumission de requête.");
-                    return;  // On quitte la méthode si l'utilisateur tape 'EXIT'
+                    Acceuil.AfficherAcceuilResidents((Resident) Main.resident);
+                    exit = true;
+                    break;
                 }
 
                 try {
@@ -336,23 +308,25 @@ public class Resident implements Utilisateur {
                 }
             }
 
-            // Confirmation de la soumission
+            if (exit) {
+                Acceuil.AfficherAcceuilResidents((Resident) Main.resident);
+                break;
+            }
+
             System.out.println("\nVotre requête a été soumise avec les informations suivantes :");
             System.out.println("Titre : " + titre);
             System.out.println("Description : " + description);
             System.out.println("Type : " + type);
             System.out.println("Date de début espérée : " + dateDebut);
 
-            // Proposition de soumettre une autre requête
             System.out.println("\nVoulez-vous soumettre une autre requête ? (Tapez 'EXIT' pour quitter ou appuyez sur Entrée pour continuer)");
             String choix = scanner.nextLine();
             if (choix.equalsIgnoreCase("EXIT")) {
-                System.out.println("Vous avez quitté la soumission de requête.");
-                break;
+                Acceuil.AfficherAcceuilResidents((Resident) Main.resident);
+                exit = true;
             }
         }
     }
-
     public void signalerProbleme(Scanner scanner) throws InterruptedException {
         String titre, description;
 
@@ -378,7 +352,7 @@ public class Resident implements Utilisateur {
             description = scanner.nextLine();
             if (description.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté le processus de signalement.");
-
+                Acceuil.AfficherAcceuilResidents((Resident) Main.resident);
                 return;
             }
             if (!description.trim().isEmpty()) {
@@ -390,7 +364,7 @@ public class Resident implements Utilisateur {
 
         System.out.println("Problème signalé : " + titre + "\nDescription : " + description);
 
-
+        Acceuil.AfficherAcceuilResidents((Resident) Main.resident);
     }
 
     public void gererNotif(Scanner scanner) throws InterruptedException {
@@ -422,7 +396,7 @@ public class Resident implements Utilisateur {
 
             if (choix.equalsIgnoreCase("EXIT")) {
                 System.out.println("Vous avez quitté la gestion des notifications.");
-
+                Acceuil.AfficherAcceuilResidents(this);
                 return;
             }
 
