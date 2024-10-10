@@ -389,7 +389,7 @@ public class Resident implements Utilisateur {
             }
         }
 
-        System.out.println("Problème signalé : " + titre + "\nDescription : " + description);
+        System.out.println("Le problème signalé : " + titre + "\nDescription : " + description);
 
 
     }
